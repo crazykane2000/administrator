@@ -220,7 +220,7 @@
                       <?php 
                         $i=1;
                         try {
-                              $stmt = $pdo->prepare('SELECT * FROM `business_partners` WHERE `partner_type`="Wholesaler" ORDER BY creation_date DESC');
+                              $stmt = $pdo->prepare('SELECT * FROM `business_partners` WHERE `partner_type`="Wholesaler" AND `status`="Pending" ORDER BY creation_date DESC');
                                   //echo 'SELECT * FROM franchisie_details WHERE email = :user';
                               } catch(PDOException $ex) {
                                   echo "An Error occured!"; 
@@ -236,12 +236,17 @@
                                 }
                                 $rand1 = rand(100000,900000);
                                 $rand2 = rand(100000,700000);
+
+                                 $status = '<label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label>';
+                                if ($value['status']=="Approved") {
+                                  $status = '<label class="badge" style="background-color: green;color:#fff;padding: 5px;">Approved</label>';
+                                }
                                // print_r($value);
                                 echo '<tr>
                                        <td>'.$i.'.</td>
                                        <td style="font-weight: bold;color:#333"><b>'.$value['name'].'</b></td>
                                        <td >'.$value['business_type'].'</td>
-                                       <td><label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label></td>
+                                       <td>'.$status.'</td>
                                        <td >'.$value['address'].'</td>
                                        
                                      </tr>';

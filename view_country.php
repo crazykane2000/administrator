@@ -72,14 +72,15 @@
               <p class="u-mb-small">Administrator Section</p>
               <div class="">
                <div class="c-card" style="min-height:800px">
-                   <h4>Business Partners</h4>
+                   <h4>View Available Countries</h4>
                    <hr style="margin: 10px 0px;opacity: .2" />
                    <table class="tabler">
                      <thead>
                        <th>S.No.</th>
-                       <th>Status</th>
                        <th>Country</th>
+                       <th>Status</th>
                        <th>Date</th>
+                       <th>Action</th>
                      </thead>
 
                      <tbody>
@@ -97,9 +98,11 @@
                               $user = $stmt->fetchAll();
 
                               foreach ($user as $key => $value) {
-                                $ratay = '<label class="badge" style="background-color: #03a9f4;color:#fff;padding: 5px;">Pending</label>';
+                                $btns = '<a href="approve_country.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--success ">Enable</a>';
+                                $ratay = '<label class="badge" style="background-color: red;color:#fff;padding: 5px;">Disabled</label>';
                                 if ($value['status']!="Pending") {
-                                  $ratay = '<label class="badge" style="background-color: green;color:#fff;padding: 5px;">Approved</label>';
+                                  $ratay = '<label class="badge" style="background-color: green;color:#fff;padding: 5px;">Enabled</label>';
+                                  $btns = '<a href="unapprove_country.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--danger ">Disable</a>';
                                 }
                                
                                echo '<tr>
@@ -107,6 +110,7 @@
                                       <td >'.$value['country'].'</td>
                                        <td>'.$ratay.'</td>
                                        <td>'.$value['date'].'</td>
+                                       <td>'.$btns.'</td>
                                      </tr>';
                                      $i++;
                               }

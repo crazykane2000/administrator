@@ -86,6 +86,7 @@
                        <th>Status</th>
                        <th>Country</th>
                        <th>Date Registered</th>
+                       <th>Action</th>
                      </thead>
 
                      <tbody>
@@ -103,19 +104,22 @@
                               $user = $stmt->fetchAll();
 
                               foreach ($user as $key => $value) {
+                                $btns = '<a href="approve_admin.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--success ">Approve</a>';
                                 $hata = '<label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label>';
                                 if ($value['status']=="Approved") {
                                   $hata = '<label class="badge" style="background-color: green;color:#fff;padding: 5px;">Approved</label>';
+                                  $btns = '<a href="unapprove_admin.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--danger">Unapprove</a>';
                                 }
                                 echo '<tr>
                                        <td>'.$i.'.</td>
                                        <td data-id="'.$value['id'].'" style="font-weight: bold;color:#333;cursor:pointer" class="tango" data-toggle="modal" data-target="#modal1"><b>'.$value['username'].'</b><br/>
                                         Tx : <span style="color:#888;font-size:12px;">'.$value['tx_address'].'</td>
                                        <td >'.$value['type'].'</td>
-                                       <td><label class="badge" style="background-color: orange;color:#fff;padding: 5px;">'.$value['pass'].'</label></td>
+                                       <td>'.$value['pass'].'</td>
                                        <td >'.$hata.'</td>
                                        <td>'.$value['country'].'</td>
                                        <td>'.$value['date'].'</td>
+                                       <td>'.$btns.'</td>
                                      </tr>';
                                      $i++;
                               }

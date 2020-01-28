@@ -18,7 +18,7 @@
     $value_list.="'".$_REQUEST['address']."',";
      $value_list.="'".$_REQUEST['contact_information']."',";
     $value_list.="'".$_REQUEST['business_partner_type']."',";
-    $value_list.="'".getToken(43)."'";
+    $value_list.="'0x".getToken(43)."'";
     $result = $pdo->exec("INSERT INTO `$table` ($key_list) VALUES ($value_list)");
     header('Location:view_business_partner.php?choice=success&value=Business Partner Added Successfully. ');
     exit();

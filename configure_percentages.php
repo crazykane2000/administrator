@@ -82,7 +82,7 @@
                      <th>Store Name</th>
                      <th>IRN No.</th>
                      <th>KYC Documents</th>
-                     <th>Status</th>
+                     <th>Operation</th>
                    </thead>
 
                    <tbody>
@@ -189,10 +189,9 @@
                      <thead>
                        <th>S.No.</th>
                        <th>Wholesaler Name</th>
-                       <th>Category</th>
                        <th>Status</th>
                        <th>Country</th>
-                       
+                       <th>Operation</th>
                      </thead>
 
                      <tbody>
@@ -200,7 +199,7 @@
                       <?php 
                         $i=1;
                         try {
-                              $stmt = $pdo->prepare('SELECT * FROM `business_partners` WHERE `partner_type`="Wholesaler" ORDER BY creation_date DESC');
+                              $stmt = $pdo->prepare('SELECT * FROM `business_partners` WHERE `partner_type`="Wholesaler" ORDER BY creation_date DESC LIMIT 10');
                                   //echo 'SELECT * FROM franchisie_details WHERE email = :user';
                               } catch(PDOException $ex) {
                                   echo "An Error occured!"; 
@@ -219,11 +218,10 @@
                                // print_r($value);
                                 echo '<tr>
                                        <td>'.$i.'.</td>
-                                       <td style="font-weight: bold;color:#333"><b>'.$value['name'].'</b></td>
-                                       <td >'.$value['business_type'].'</td>
+                                       <td style="font-weight: bold;color:#333"><b>'.$value['name'].'</b><br/><span style="color:green">'.$value['business_type'].'</span></td>
                                        <td><label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label></td>
                                        <td >'.$value['address'].'</td>
-                                       
+                                       <td><button class="c-btn c-btn--success c-btn--small" data-toggle="modal" data-target="#modal1">Configure %</button></td>
                                      </tr>';
                                      $i++;
                               }

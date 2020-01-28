@@ -171,7 +171,7 @@
           <div class="u-hidden-down@desktop">
             <a class="c-btn c-btn--info c-btn--small" href="add_business_partner.php">New Business Partner</a>
             <a class="c-btn c-btn--success c-btn--small" href="admin.php">Admin</a>
-            <a class="c-btn c-btn--warning c-btn--small" href="setting.php">Setting</a>
+            <a class="c-btn c-btn--warning c-btn--small" href="setting.php">Settings</a>
           </div>
         </div>
       </div>

@@ -128,7 +128,7 @@
                         <label class="c-field__label" for="input1">Country </label>
                         <select class="c-input" name="country">
                            <?php 
-                            $fata = fetch_all_popo("country");
+                            $fata = get_data_col("country", "status", "Approved");
                             foreach ($fata as $key => $value) {
                               echo '<option>'.$value['country'].'</option>';
                             }

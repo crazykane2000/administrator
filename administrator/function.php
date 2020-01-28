@@ -33,6 +33,38 @@ function add_notification($notification, $for){
     return $token;
 }
 
+ function authenticate_backoffice(){
+    if(isset($_SESSION['user'], $_SESSION['loged_primitives']))
+      {
+         include 'connection.php';
+          $pdo = new PDO($dsn, $user, $pass, $opt);
+          try {
+              $stmt = $pdo->prepare('SELECT * FROM admin_backoffice WHERE username ="'.$_SESSION['user'].'"');
+          } catch(PDOException $ex) {
+              echo "An Error occured!"; 
+              print_r($ex->getMessage());
+          }
+          $stmt->execute();
+          $user = $stmt->fetch();
+
+          //print_r($user);
+          $row_count = $stmt->rowCount();
+         
+          $pass = md5($user['pass']);
+          //echo $pass;
+          if($pass != $_SESSION['loged_primitives'])
+          {
+             header('Location:index.php?choice=error&value=Session timed out. Login again.');
+          }
+           return $user;      }
+      else
+      {
+        header('Location:index.php?choice=error&value=Session timed out. Login again.');
+      }
+       return $user;
+  }
+
+
 
 
     function see_status($data){

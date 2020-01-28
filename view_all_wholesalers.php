@@ -87,6 +87,7 @@
                        <th>CL Pending</th>
                        <th>CLS utilization</th>
                        <th>Order with Open Balance</th>
+                       <th>Action</th>
                      </thead>
 
                      <tbody>
@@ -110,6 +111,13 @@
                                 }
                                 $rand1 = rand(100000,900000);
                                 $rand2 = rand(100000,700000);
+
+                                $btns = '<a href="approve_partner.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--success ">Approve</a>';
+                                $status = '<label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label>';
+                                if ($value['status']=="Approved") {
+                                  $status = '<label class="badge" style="background-color: green;color:#fff;padding: 5px;">Approved</label>';
+                                  $btns = '<a href="unapprove_partner.php?id='.$value['id'].'" class="c-btn c-btn--small c-btn--danger">Unapprove</a>';
+                                }
                                // print_r($value);
                                echo '<tr>
                                        <td>'.$i.'.</td>
@@ -117,7 +125,7 @@
                                         Tx : <span style="color:#888;font-size:12px;">'.$value['tx_address'].'</span>
                                        </td>
                                        <td >'.$value['business_type'].'</td>
-                                       <td><label class="badge" style="background-color: orange;color:#fff;padding: 5px;">Pending</label></td>
+                                       <td>'.$status.'</td>
                                        <td >'.$value['address'].'</td>
                                        <td>0</td>
                                        <td>0</td>
@@ -125,6 +133,7 @@
                                        <td>USD 0</td>
                                        <td>USD 0</td>
                                        <td>USD 0</td>
+                                        <td>'.$btns.'</td>
                                      </tr>';
                                      $i++;
                               }

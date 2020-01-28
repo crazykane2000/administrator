@@ -13,7 +13,7 @@
     $value_list.="'".$_REQUEST['password']."',";
     $value_list.="'".$_REQUEST['country']."',";
     $value_list.="'Approved',";
-    $value_list.="'".getToken(43)."'";
+    $value_list.="0x'".getToken(43)."'";
     $result = $pdo->exec("INSERT INTO `$table` ($key_list) VALUES ($value_list)");
     header('Location:view_admins.php?choice=success&value=Admin  Backoffice Personals Added Successfully.');
     exit();
